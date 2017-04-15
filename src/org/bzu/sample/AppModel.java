@@ -34,6 +34,8 @@ import org.jhotdraw.draw.tool.TextAreaCreationTool;
 import org.jhotdraw.samples.pert.figures.DependencyFigure;
 import org.jhotdraw.samples.pert.figures.TaskFigure;
 import org.jhotdraw.util.ResourceBundleUtil;
+import org.bzu.ction.FigureResetPlaceAction;
+import org.bzu.ction.FiguresResetSizeAction;
 import org.bzu.iterator.Iterator;
 import org.bzu.sample.figure.FigureFactory;
 import org.bzu.sample.figure.FigureFactoryImp;
@@ -84,6 +86,11 @@ public class AppModel extends AbstractApplicationModel {
 	private void addCreationButtonsTo(JToolBar tb, DrawingEditor editor) {
 		Collection<Action> menuActions = new LinkedList<Action>();
 		// Add separator
+		menuActions.add(null);
+
+		menuActions.add(new FigureResetPlaceAction(editor));
+		menuActions.add(new FiguresResetSizeAction(editor));
+
 		ApplicationModelFacade appFacad = new ApplicationModelFacade();
 		appFacad.addDefaultCreationButtonsTo(tb, editor,
 				ButtonFactory.createDrawingActions(editor), menuActions);
