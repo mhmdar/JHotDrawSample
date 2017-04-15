@@ -104,6 +104,7 @@ public class ActorFigure extends GraphicalCompositeFigure {
 
 		@Override
 		public void handleConnect(Connector start, Connector end) {
+		
 			setAttributeEnabled(STROKE_TYPE, true);
 			willChange();
 			set(STROKE_TYPE,

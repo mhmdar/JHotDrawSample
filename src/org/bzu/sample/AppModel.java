@@ -84,37 +84,13 @@ public class AppModel extends AbstractApplicationModel {
 	private void addCreationButtonsTo(JToolBar tb, DrawingEditor editor) {
 		Collection<Action> menuActions = new LinkedList<Action>();
 		// Add separator
- 		addDefaultCreationButtonsTo(tb, editor,
+		ApplicationModelFacade appFacad = new ApplicationModelFacade();
+		appFacad.addDefaultCreationButtonsTo(tb, editor,
 				ButtonFactory.createDrawingActions(editor), menuActions);
+		
+		
 	}
 
-	private void addDefaultCreationButtonsTo(JToolBar tb,
-			final DrawingEditor editor, Collection<Action> drawingActions,
-			Collection<Action> selectionActions) {
-
-		// Add the selection tool to toolbar
-		ButtonFactory.addSelectionToolTo(tb, editor, drawingActions,
-				selectionActions);
-        ResourceBundleUtil labels = ResourceBundleUtil.getBundle("org.jhotdraw.samples.pert.Labels");
-        ResourceBundleUtil drawLabels = ResourceBundleUtil.getBundle("org.jhotdraw.draw.Labels");
-        FigureFactory figureFactory = new FigureFactoryImp();
-         tb.addSeparator();
-         Figure drawingFigure;
-         FigureType figureType = null;
-         for(Iterator iter = FigureType.getIterator(); iter.hasNext();){
-        	figureType = iter.next();
- 	       drawingFigure = figureFactory.getFigure(figureType);
- 	
- 			ButtonFactory.addToolTo(tb, editor, new CreationTool(
- 					drawingFigure), figureType.getFigureLabel(), figureType
- 					.getLabelBundleUtil());
- 		}
-			ButtonFactory.addToolTo(tb, editor, new ConnectionTool(
- 					new LineConnectionFigure()), "edit.createLineConnection", figureType
- 					.getLabelBundleUtil());
-
-         
-	}
 
 	/**
 	 * @return the editor
