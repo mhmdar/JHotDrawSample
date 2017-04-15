@@ -13,6 +13,7 @@ import org.jhotdraw.draw.RectangleFigure;
 import org.jhotdraw.draw.RoundRectangleFigure;
 import org.jhotdraw.draw.TextFigure;
 import org.jhotdraw.draw.TriangleFigure;
+import org.jhotdraw.draw.decoration.ArrowTip;
 import org.jhotdraw.util.ResourceBundleUtil;
 
 
@@ -20,7 +21,9 @@ public enum FigureType {
 	RECTANGLE("edit.createRectangle",RectangleFigure.class),
 	TEXT("edit.createText", TextFigure.class),
 	ELLIPSE("edit.createEllipse", EllipseFigure.class),
- 	ActorFigure("edit.createEllipse", ActorFigure.class);
+	ACTOR("edit.createActor", ActorFigure.class),
+	ARROW("edit.createArrow", LineFigure.class),
+;
 	/**
 	 * Default jhotdraw framework ResourceBundleutil
 	 */
@@ -29,7 +32,7 @@ public enum FigureType {
 	/**
 	 * Design patterns demo custom resource bundle.
 	 */
-  //  private static ResourceBundleUtil simpleEditorLabels = ResourceBundleUtil.getBundle("org.bzu.Labels");
+    private static ResourceBundleUtil simpleEditorLabels = ResourceBundleUtil.getBundle("resources.org.bzu.Labels");
     
     /**
      * Label text of the given figure, to be used for its creation icon and tooltip
@@ -75,6 +78,10 @@ public enum FigureType {
 	 * @return
 	 */
 	public ResourceBundleUtil getLabelBundleUtil() {
+		if(ordinal() == ACTOR.ordinal() ){
+			return simpleEditorLabels;
+		}
+
 		return jhotdrawLabels;
 	}
 	 public static Iterator getIterator() {
